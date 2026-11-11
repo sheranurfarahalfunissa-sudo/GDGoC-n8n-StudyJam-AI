@@ -1,0 +1,102 @@
+{
+  "name": "",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "P1-test",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.2,
+      "position": [
+        96,
+        192
+      ],
+      "id": "68a07fb9-3ec1-40a5-b88e-ef1c8df099d5",
+      "name": "Webhook",
+      "webhookId": "ebe9764f-4c8c-4062-8f6d-f258197cd9cf"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "20897850-077c-4229-a8a2-522dfca96cba",
+              "name": "=Nama",
+              "value": "={{ $json.body.Nama }}",
+              "type": "string"
+            },
+            {
+              "id": "a2e331be-1ac3-4ab6-b604-f3619589f81a",
+              "name": "=Pesan",
+              "value": "={{ $json.body.Pesan }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": "={{ false }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        336,
+        192
+      ],
+      "id": "f77daf43-12aa-4e8d-bbb8-7ed362dcd6cb",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        560,
+        192
+      ],
+      "id": "484e3a0e-a8d1-499f-b39b-df63b4e09b8f",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "15b74d8c-faf6-46eb-952e-8e7dd85f4c2d",
+  "meta": {
+    "instanceId": "134fa0d6ce5a6c75954ca4dddf7d3f0469a0e0d648264e47a1219fe3e26fa8d9"
+  },
+  "nodeGroups": [],
+  "id": "5VtHGW1FzXpWB6xA",
+  "tags": []
+}
